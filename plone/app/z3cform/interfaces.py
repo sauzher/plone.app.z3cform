@@ -1,9 +1,15 @@
+from plone.app.textfield.widget import IRichTextWidget as patextfield_IRichTextWidget
 from z3c.form.interfaces import IFormLayer
-from zope.schema.interfaces import IDate
-from zope.schema.interfaces import IDatetime
 from z3c.form.interfaces import ISelectWidget as IBaseSelectWidget
 from z3c.form.interfaces import ITextWidget
-from plone.app.textfield.widget import IRichTextWidget as patextfield_IRichTextWidget
+from zope import schema
+from zope.interface import Interface
+from zope.schema.interfaces import IDate
+from zope.schema.interfaces import IDatetime
+
+
+from zope.i18nmessageid import MessageFactory
+_ = MessageFactory('plone')
 
 
 class IPloneFormLayer(IFormLayer):
@@ -45,3 +51,10 @@ class IRelatedItemsWidget(ITextWidget):
 
 class IRichTextWidget(patextfield_IRichTextWidget):
     """Marker interface for the TinyMCEWidget."""
+
+
+class ICaptcha(Interface):
+    """Captcha/ReCaptcha text field to extend the existing comment form.
+    """
+    captcha = schema.TextLine(title=_(u"Captcha"),
+                              required=False)
