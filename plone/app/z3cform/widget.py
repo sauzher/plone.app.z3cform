@@ -46,8 +46,10 @@ from plone.app.z3cform.interfaces import (
     ISelectWidget)
 
 import json
-
-from Products.CMFPlone.interfaces import IEditingSchema
+try:
+    from Products.CMFPlone.interfaces import IEditingSchema
+except:
+    IEditingSchema = None
 
 
 class BaseWidget(Widget):
@@ -356,7 +358,8 @@ class AjaxSelectWidget(BaseWidget, z3cform_TextWidget):
 
         if field and getattr(field, 'vocabulary', None):
             form_url = self.request.getURL()
-            source_url = "%s/++widget++%s/@@getSource" % (form_url, self.name)
+            source_url = "%s/++widget++%s/@@getSource" % (
+                form_url, self.name)
             args['pattern_options']['vocabularyUrl'] = source_url
 
         # ISequence represents an orderable collection

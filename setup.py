@@ -5,6 +5,7 @@ from setuptools import setup, find_packages
 def read(*rnames):
     return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
 
+
 version = '1.2.4.dev0'
 
 long_description = (
@@ -18,7 +19,7 @@ long_description = (
     + '\n' +
     read('CHANGES.rst')
     + '\n'
-    )
+)
 
 setup(
     name='plone.app.z3cform',
@@ -48,7 +49,7 @@ setup(
         'Products.CMFCore',
         'Products.CMFPlone',
         'Zope2',  # Products.Five
-        'plone.app.widgets>=2.0.0.dev0',
+        'plone.app.widgets',
         'plone.protect',
         'plone.z3cform>=0.5.11dev',
         'z3c.form >= 3.0',
